@@ -62,3 +62,7 @@ group :test do
   gem 'selenium-webdriver', group: :test
 end
 gem "shoulda-matchers", "~> 4.1"
+
+gem "rails-erd", "~> 1.6"
+
+gem "jquery-rails", "~> 4.3"
