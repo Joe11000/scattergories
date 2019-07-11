@@ -4,17 +4,17 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
-  end
-
-  # GET /games/1
-  # GET /games/1.json
-  def show
     PregameSetup.call if Category.count == 0
     @categories = PregameSetup.send(:categories).sample 12
 
     possible_letter_to_start_with = ('A'..'Z').to_a - %w(Q U V X Y Z)
     @letter_that_answers_must_start_with = possible_letter_to_start_with.sample
+  end
+
+  # GET /games/1
+  # GET /games/1.json
+  def show
+
   end
 
   # GET /games/new

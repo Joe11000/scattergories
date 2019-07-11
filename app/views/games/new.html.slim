@@ -1,5 +1,19 @@
-h1 New game
+p#notice = notice
 
-== render 'form'
+#pregame
+  = button_tag 'Start Game', id: 'timer-button'
 
-= link_to 'Back', games_path
+#midgame
+  p#timer-text 
+    span.time> 180 
+    | seconds remaining
+
+  h2 Letter Must Start With 
+    <span id='secret-letter' data-secret-letter="#{@letter_that_answers_must_start_with}">'?'</span>
+
+  = form_tag game_path(1) do 
+    fieldset
+      - @categories.each_with_index do |question, index|
+        = label_tag "answer_#{index}", question 
+        = text_field_tag "answer_#{index}"
+      = hidden_field_tag :letter_that_answers_must_start_with, @letter_that_answers_must_start_with
