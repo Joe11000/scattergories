@@ -1,15 +1,19 @@
 p#notice = notice
 
-= button_tag 'Start Game', id: 'timer-button'
-p#timer-text 
-  span.time> 180 
-  | seconds remaining
+#pregame
+  = button_tag 'Start Game', id: 'timer-button'
 
-h2 Letter Must Start With 
-  <span id='secret-letter' data-secret-letter="#{@letter_that_answers_must_start_with}">'?'</span>
+#midgame
+  p#timer-text 
+    span.time> 180 
+    | seconds remaining
 
-= form_tag game_path(1), local: true do 
-  fieldset
-    - @categories.each_with_index do |question, index|
-      = label_tag "answer_#{index}", question 
-      = text_field_tag "answer_#{index}"
+  h2 Letter Must Start With 
+    <span id='secret-letter' data-secret-letter="#{@letter_that_answers_must_start_with}">'?'</span>
+
+  = form_tag game_path(1) do 
+    fieldset
+      - @categories.each_with_index do |question, index|
+        = label_tag "answer_#{index}", question 
+        = text_field_tag "answer_#{index}"
+      = hidden_field_tag :letter_that_answers_must_start_with, @letter_that_answers_must_start_with

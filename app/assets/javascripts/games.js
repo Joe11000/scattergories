@@ -22,13 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
     el.innerHTML =  "'" + el.attributes['data-secret-letter'].value + "'";
   }
 
+  function revealBoard(){
+    document.querySelector('#pregame').style.display = 'none';
+    document.querySelector('#midgame').style.display = 'block';
+  }
   function hideStartButton(){
     document.querySelector('#timer-button').style.display = 'none'
   }
 
   function startRound() {
-    setInterval(roundTimer(), 1000)
     hideStartButton();
+    setInterval(roundTimer(), 1000)
+    revealBoard();
     revealLetterThatWordsMustStartWith();
   }
 
