@@ -11,7 +11,6 @@ RSpec.describe 'starting game' do
     it 'sees the pregame section' do 
       visit root_path
 
-
       expect(page).to have_css '#pregame'      
     end
     
