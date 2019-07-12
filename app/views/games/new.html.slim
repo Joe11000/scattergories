@@ -15,5 +15,5 @@ p#notice = notice
     fieldset
       - @categories.each_with_index do |question, index|
         = label_tag "answer_#{index}", question 
-        = text_field_tag "answer_#{index}"
-      = hidden_field_tag :letter_that_answers_must_start_with, @letter_that_answers_must_start_with
+        = text_field_tag "answer_#{index}", name: "game[answers][#{index + 1}]"
+      = hidden_field_tag :letter_that_answers_must_start_with, @letter_that_answers_must_start_with, name: 'game[letter_that_answers_must_start_with]'

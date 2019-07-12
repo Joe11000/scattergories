@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  # before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -29,17 +29,9 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    score = ScoreCalculator.call game_params
 
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to new_game_path, notice: "score: #{score}"
   end
 
   # PATCH/PUT /games/1
@@ -68,12 +60,12 @@ class GamesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
+    # def set_game
+    #   @game = Game.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.fetch(:game, {})
+      params.require(:game).permit(:letter_that_answers_must_start_with, answers: {})
     end
 end
