@@ -15,7 +15,7 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    PregameSetup.call if Category.count == 0
+    # PregameSetup.call if Category.count == 0 # right now nothing is being saved in the database
     @categories = PregameSetup.send(:categories).sample 12
 
     possible_letter_to_start_with = ('A'..'Z').to_a - %w(Q U V X Y Z)
